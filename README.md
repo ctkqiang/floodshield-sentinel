@@ -1,6 +1,8 @@
 # 🛡️ FloodShield Sentinel 智能防汛预警系统
 
-![FloodShield Sentinel Logo](assets/logo.svg)
+<div align="center">
+  <img src="assets/logo.svg" alt="FloodShield Sentinel Logo" width="200" height="200" style="margin: 20px 0">
+</div>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)]()
@@ -142,7 +144,9 @@ sudo ./kanghongweishi
 
 ### 网络接口选择
 
-![Network Interface Selection](assets/interface_selection.png)
+<div align="center">
+  <img src="assets/interface_selection.png" alt="Network Interface Selection" width="800" style="max-width: 100%; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
 
 ```bash
 选择监听的网络接口 (Select Network Interface):
