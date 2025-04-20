@@ -1,7 +1,7 @@
 # 🛡️ FloodShield Sentinel 智能防汛预警系统
 
 <div align="center">
-  <img src="assets/logo.svg" alt="FloodShield Sentinel Logo" width="200" height="200" style="margin: 20px 0">
+  <img src="https://raw.githubusercontent.com/ctkqiang/floodshield-sentinel/9d46bb35e90330c2890ee7ff1cfa0f961e20f415/assets/logo.svg" alt="FloodShield Sentinel Logo" width="200" height="200" style="margin: 20px 0">
 </div>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -145,7 +145,7 @@ sudo ./kanghongweishi
 ### 网络接口选择
 
 <div align="center">
-  <img src="assets/interface_selection.png" alt="Network Interface Selection" width="800" style="max-width: 100%; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="https://github.com/ctkqiang/floodshield-sentinel/blob/main/assets/%E6%88%AA%E5%B1%8F2025-04-21%20%E4%B8%8A%E5%8D%881.24.04.png?raw=true" alt="Network Interface Selection" width="800" style="max-width: 100%; margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ```bash
