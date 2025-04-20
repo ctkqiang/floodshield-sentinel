@@ -6,16 +6,46 @@
 #include <unistd.h>
 
 #include <ctime>
+#include <deque>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
-// 每个 IP 的包计数
+// ANSI 颜色代码
+const string RED = "\033[31m";
+const string YELLOW = "\033[33m";
+const string RESET = "\033[0m";
+
+// IP 包计数和时间戳追踪
 unordered_map<string, int> ip_packet_count;
+// 记录每个IP的最近出现时间
+unordered_map<string, deque<time_t>> ip_timestamps;
+// 检测重复IP的时间窗口（秒）
+const int REPEAT_WINDOW = 5;
+// 判定为频繁出现的最小次数
+const int FREQ_THRESHOLD = 5;
+
+// 检查IP是否频繁出现
+bool isFrequentIP(const string& ip) {
+    auto now = time(nullptr);
+    auto& timestamps = ip_timestamps[ip];
+
+    // 清理过期的时间戳
+    while (!timestamps.empty() && now - timestamps.front() > REPEAT_WINDOW) {
+        timestamps.pop_front();
+    }
+
+    // 添加当前时间戳
+    timestamps.push_back(now);
+
+    // 如果在时间窗口内出现次数超过阈值，判定为频繁IP
+    return timestamps.size() >= FREQ_THRESHOLD;
+}
 
 void packet_handler(u_char* args, const struct pcap_pkthdr* header,
                     const u_char* packet) {
@@ -26,9 +56,13 @@ void packet_handler(u_char* args, const struct pcap_pkthdr* header,
 
     ip_packet_count[src_ip]++;
 
-    // 临时打印包的统计信息
     stringstream ss;
-    ss << "📦 " << src_ip << " ➜ " << dst_ip;
+    // 根据IP出现频率使用不同颜色标记
+    if (isFrequentIP(src_ip)) {
+        ss << YELLOW << "📦 " << src_ip << " ➜ " << dst_ip << RESET;
+    } else {
+        ss << "📦 " << src_ip << " ➜ " << dst_ip;
+    }
 
     if (ip_header->ip_p == IPPROTO_TCP) {
         const struct tcphdr* tcp =
@@ -49,9 +83,6 @@ void clearScreen() {
     // 使用 ANSI 转义代码清屏
     cout << "\033[2J\033[1;1H";
 }
-
-const string RED = "\033[31m";
-const string RESET = "\033[0m";
 
 string getInterfaceDescription(const string& name) {
     if (name == "en0") return "以太网/Wi-Fi 接口";
