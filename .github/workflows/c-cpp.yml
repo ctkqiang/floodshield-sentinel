@@ -1,0 +1,37 @@
+name: Build and Release C++ Executable
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on new version tags like v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can change this to macos-latest or windows-latest if needed
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up g++ for C++ build
+      - name: Set up GCC
+        run: sudo apt-get install g++
+
+      # Install dependencies if needed (e.g., pcap)
+      - name: Install dependencies
+        run: sudo apt-get install libpcap-dev
+
+      # Compile the C++ code
+      - name: Build C++ executable
+        run: |
+          mkdir -p build
+          g++ -Wall -std=c++17 -o build/kanghongweishi src/kanghongweishi.cpp -lpcap
+
+      # Create a release and upload the executable
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/kanghongweishi  # Upload the compiled executable as a release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
