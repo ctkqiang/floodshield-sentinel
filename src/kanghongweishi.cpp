@@ -33,7 +33,6 @@ const int REPEAT_WINDOW = 5;
 const int FREQ_THRESHOLD = 5;
 
 /** 检查IP是否频繁出现 */
-
 void clearScreen();
 
 bool isFrequentIP(const string& ip) {
@@ -148,9 +147,15 @@ void packet_handler(u_char* args, const struct pcap_pkthdr* header,
     static bool header_printed = false;
     if (!header_printed) {
         cout << "\n🌊 流量防护卫士已激活\n"
-             << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+             << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
         header_printed = true;
     }
+
+    /** 获取当前时间并格式化 */
+    auto current_time = time(nullptr);
+    char time_buffer[32];
+    strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S",
+             localtime(&current_time));
 
     /** 格式化IP地址显示 */
     string formatted_src_ip = isFrequentIP(src_ip)
@@ -168,12 +173,13 @@ void packet_handler(u_char* args, const struct pcap_pkthdr* header,
 
     /** 构建输出信息 */
     stringstream ss;
-    ss << YELLOW << "→ " << RESET << formatted_src_ip << YELLOW << " ⟹  "
-       << RESET << formatted_dst_ip << "\n"
+    ss << DIM << "[" << time_buffer << "] " << RESET << YELLOW << "→ " << RESET
+       << formatted_src_ip << YELLOW << " ⟹  " << RESET << formatted_dst_ip
+       << "\n"
        << "   " << protocol << " [" << src_port << "➜" << dst_port
        << service_info << "]"
        << " • " << header->len << " 字节\n"
-       << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+       << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
 
     cout << ss.str();
 
@@ -182,6 +188,7 @@ void packet_handler(u_char* args, const struct pcap_pkthdr* header,
     ip_stats[src_ip].packets++;
     ip_packet_count[src_ip]++;
     ip_stats[src_ip].protocols[protocol]++;
+
     if (dst_port > 0) {
         ip_stats[src_ip].ports[dst_port]++;
     }
@@ -190,7 +197,15 @@ void packet_handler(u_char* args, const struct pcap_pkthdr* header,
 /** 更新主循环的统计信息显示 */
 void displayStatistics() {
     clearScreen();
-    cout << "\n🛡️  流量防护卫士监控面板\n"
+
+    /** 获取当前时间并格式化 */
+    auto current_time = time(nullptr);
+    char time_buffer[32];
+    strftime(time_buffer, sizeof(time_buffer), "%Y-%m-%d %H:%M:%S",
+             localtime(&current_time));
+
+    cout << "\n🛡️  流量防护卫士监控面板 " << DIM << "[" << time_buffer << "]"
+         << RESET << "\n"
          << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
          << "📊 流量分析:\n";
 
