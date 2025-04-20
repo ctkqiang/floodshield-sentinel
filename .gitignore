@@ -68,3 +68,6 @@ Datas/
 # Project specific
 Phone_dump_sms.ab
 phone_forensic
+*.o
+
+./kanghongweishi

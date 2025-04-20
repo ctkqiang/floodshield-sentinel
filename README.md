@@ -4,9 +4,13 @@
   <img src="https://raw.githubusercontent.com/ctkqiang/floodshield-sentinel/9d46bb35e90330c2890ee7ff1cfa0f961e20f415/assets/logo.svg" alt="FloodShield Sentinel Logo" width="200" height="200" style="margin: 20px 0">
 </div>
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)]()
-[![Platform](https://img.shields.io/badge/platform-MacOS%20|%20Linux-lightgrey.svg)]()
+<p>
+    <img src="https://img.shields.io/badge/版本-1.0.0-blue.svg" alt="version"/>
+    <img src="https://img.shields.io/badge/许可证-Mulan PSL-green.svg" alt="license"/>
+    <img src="https://img.shields.io/badge/平台-MacOS%20%7C%20Linux | Windows-White.svg" alt="platform"/>
+    <img src="https://img.shields.io/badge/语言-C++-red.svg" alt="language"/>
+ </p>
+
 
 ## 📋 项目简介
 
