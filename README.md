@@ -11,12 +11,12 @@
     <img src="https://img.shields.io/badge/语言-C++-red.svg" alt="language"/>
  </p>
 
-
 ## 📋 项目简介
 
 FloodShield Sentinel 是一个基于 C++ 开发的智能网络流量监控与分析系统，专门用于检测和防御网络攻击。本系统采用 libpcap 进行底层数据包捕获，实现实时流量分析和异常检测。
 
 ### 🎯 主要特点
+
 - 实时网络流量监控
 - TCP/UDP 协议分析
 - 智能异常流量检测
@@ -26,18 +26,21 @@ FloodShield Sentinel 是一个基于 C++ 开发的智能网络流量监控与分
 ## 💡 核心功能
 
 ### 1. 网络监控 📊
+
 - 实时数据包捕获
 - 协议类型识别（TCP/UDP）
 - 端口流量统计
 - IP 流量分析
 
 ### 2. 异常检测 🚨
+
 - DDoS 攻击检测
 - 流量突发预警
 - 异常连接监控
 - 实时告警提示
 
 ### 3. 数据分析 📈
+
 - 流量统计分析
 - 连接状态跟踪
 - 实时流量图表
@@ -46,11 +49,13 @@ FloodShield Sentinel 是一个基于 C++ 开发的智能网络流量监控与分
 ## 🔧 技术架构
 
 ### 开发环境
+
 - C++ 17
 - libpcap
 - ANSI Terminal UI
 
 ### 系统要求
+
 - MacOS/Linux 操作系统
 - 管理员/Root 权限
 - 支持 libpcap 的网络接口
@@ -58,6 +63,7 @@ FloodShield Sentinel 是一个基于 C++ 开发的智能网络流量监控与分
 ## 📌 编译要求
 
 ### 依赖项
+
 - g++ 编译器 (支持 C++17)
 - libpcap 开发库
 - make 工具
@@ -90,11 +96,11 @@ FloodShield Sentinel 是一个基于 C++ 开发的智能网络流量监控与分
 - 网络接口必须支持混杂模式
 - 建议使用有线网络接口以获得最佳性能
 
-
 ### MacOS 环境配置
+
 ```bash
 brew install libpcap
-````
+```
 
 ### Linux 环境配置
 
@@ -187,6 +193,23 @@ sudo ./kanghongweishi
 ...
 ```
 
+### 🤝 加入技术交流群
+
+欢迎加入我们的技术交流群，与其他安全研究者分享经验和知识！
+
+<div align="center" style="margin: 20px 0">
+<table>
+<tr>
+<td align="center" width="300">
+<img src="assets/qrcode_1747839744296.jpg" width="200" />
+<br />
+<strong>QQ交流群: 934810107</strong>
+<br />
+（扫码加入，一起探讨安全技术）
+</td>
+</tr>
+</table>
+</div>
 
 ## 🤝 贡献指南
 
